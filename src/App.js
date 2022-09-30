@@ -60,7 +60,6 @@ const App = () => {
       const response = await axios.get(
         `https://api.0x.org/swap/v1/price?sellToken=${fromToken.address}&buyToken=${toToken.address}&sellAmount=${amt}`
       );
-      console.log(response);
       if (response) {
         setSwapPrice(response.data);
         const _price = response.data.buyAmount / 10 ** toToken.decimals;
@@ -70,30 +69,28 @@ const App = () => {
     amount && fromPrice();
   }, [fromToken, toToken, amount]);
 
-  console.log(fromToken, toToken, swapPrice)
 
   const swapToken = async () => {
-    /*  const ZERO_EX_ADDRESS = "0xdef1c0ded9bec7f1a1670819833240f027b25eff"; */
+    const ZERO_EX_ADDRESS = "0xdef1c0ded9bec7f1a1670819833240f027b25eff";
     const contract = new ethers.Contract(fromToken.address, erc20abi, provider);
     const _signer = provider.getSigner();
     const contractInsatance = contract.connect(_signer);
-    const maxApproval = ethers.utils.parseUnits("2", 256);
+    /*  const maxApproval = BigNumber.from(2).mul(BigNumber.from(1)).pow(256);
+    console.log(swapPrice); 
     await contractInsatance.approve(swapPrice.allowanceTarget, maxApproval, {
       from: account,
-    });
-
-    /*  const currentAllowance = new BigNumber(
-      contractInsatance.allowance(account, ZERO_EX_ADDRESS)
+    }); */
+    const currentAllowance = await contractInsatance.allowance(
+      swapPrice.allowanceTarget,
+      ZERO_EX_ADDRESS
     );
-    if (currentAllowance.isLessThan(fromToken.sellAmount)) {
-      await contractInsatance.approve(ZERO_EX_ADDRESS, fromToken.sellAmount, {
-        from: account,
-      });
-    } */
-
+    if (currentAllowance < swapPrice.sellAmount) {
+      await contractInsatance.approve(ZERO_EX_ADDRESS, swapPrice.sellAmount);
+    }
     const receipt = await _signer.sendTransaction(swapPrice);
     await receipt.wait();
   };
+
   return (
     <Box>
       <Typography
