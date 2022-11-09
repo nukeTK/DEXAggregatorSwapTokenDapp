@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/nukeTK/DEXAggregatorSwapTokenDapp/static/css/main.0a7790f1.css",
-    "main.js": "/nukeTK/DEXAggregatorSwapTokenDapp/static/js/main.f293e613.js",
-    "index.html": "/nukeTK/DEXAggregatorSwapTokenDapp/index.html",
-    "main.0a7790f1.css.map": "/nukeTK/DEXAggregatorSwapTokenDapp/static/css/main.0a7790f1.css.map",
-    "main.f293e613.js.map": "/nukeTK/DEXAggregatorSwapTokenDapp/static/js/main.f293e613.js.map"
+    "main.css": "/DEXAggregatorSwapTokenDapp/static/css/main.0a7790f1.css",
+    "main.js": "/DEXAggregatorSwapTokenDapp/static/js/main.f293e613.js",
+    "index.html": "/DEXAggregatorSwapTokenDapp/index.html",
+    "main.0a7790f1.css.map": "/DEXAggregatorSwapTokenDapp/static/css/main.0a7790f1.css.map",
+    "main.f293e613.js.map": "/DEXAggregatorSwapTokenDapp/static/js/main.f293e613.js.map"
   },
   "entrypoints": [
     "static/css/main.0a7790f1.css",
